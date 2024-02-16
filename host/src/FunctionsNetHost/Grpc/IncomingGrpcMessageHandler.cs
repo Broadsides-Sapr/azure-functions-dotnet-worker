@@ -27,6 +27,7 @@ namespace FunctionsNetHost.Grpc
 
         private async Task Process(StreamingMessage msg)
         {
+            Logger.Log($"Processing message.{msg.ContentCase}");
             if (_specializationDone)
             {
                 // Specialization done. So forward all messages to customer payload.

@@ -115,6 +115,16 @@ namespace FunctionsNetHost.Grpc
         {
             await foreach (var outboundMessage in MessageChannel.Instance.OutboundChannel.Reader.ReadAllAsync())
             {
+
+                if (outboundMessage.ContentCase == StreamingMessage.ContentOneofCase.RpcLog)
+                {
+                    Logger.LogTrace($"RPC LOG: {outboundMessage.RpcLog.Message}");
+                }
+                else
+                {
+                    Logger.Log($"PROCESSING MESSAGE FROM WORKER:{outboundMessage.ContentCase}");
+                }
+
                 await _outgoingMessageChannel.Writer.WriteAsync(outboundMessage);
             }
         }

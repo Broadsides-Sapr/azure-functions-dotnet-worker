@@ -14,4 +14,10 @@ internal static class EnvironmentVariables
     /// Application pool Id for the placeholder app. Only available in Windows(when running in IIS).
     /// </summary>
     internal const string AppPoolId  = "APP_POOL_ID";
+
+    /// <summary>
+    /// Set value to a text file path to which logs will be written.
+    /// Ex: C:\MyLogs\logs.txt
+    /// </summary>
+    internal const string LogFilePath = "AZURE_FUNCTIONS_LOGFILE_PATH";
 }

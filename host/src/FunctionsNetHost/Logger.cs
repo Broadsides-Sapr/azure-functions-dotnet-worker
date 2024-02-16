@@ -8,7 +8,7 @@ namespace FunctionsNetHost
     internal static class Logger
     {
         private static readonly string LogPrefix;
-
+        private static string? _logFilePath;
         static Logger()
         {
 #if !DEBUG
@@ -16,6 +16,29 @@ namespace FunctionsNetHost
 #else
             LogPrefix = "";
 #endif
+
+            CreateLogFile();
+        }
+
+        private static void CreateLogFile()
+        {
+            var logFilePath = EnvironmentUtils.GetValue(EnvironmentVariables.LogFilePath);
+            logFilePath ??= @"c:\\temp\\azfunc_logs.txt";
+
+            if (File.Exists(logFilePath))
+            {
+                return;
+            }
+
+            try
+            {
+                File.AppendAllText(logFilePath, $"{Environment.NewLine}Starting new session at {DateTime.Now}{Environment.NewLine}{Environment.NewLine}");
+                _logFilePath = logFilePath;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating log file at {logFilePath}: {ex.Message}");
+            }
         }
 
         internal static bool IsTraceLogEnabled
@@ -40,7 +63,22 @@ namespace FunctionsNetHost
         internal static void Log(string message)
         {
             var ts = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            Console.WriteLine($"{LogPrefix}[{ts}] [FunctionsNetHost] {message}");
+            var logMessage = $"{LogPrefix}[{ts}] [FunctionsNetHost] {message}";
+            Console.WriteLine(logMessage);
+
+            if (string.IsNullOrEmpty(_logFilePath))
+            {
+                return;
+            }
+
+            try
+            {
+                File.AppendAllText(_logFilePath, $"{logMessage}{Environment.NewLine}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error writing to log file: {ex.Message}");
+            }
         }
     }
 }
