@@ -37,5 +37,14 @@ internal class WorkerRequestServicesMiddleware
         context.Features.Set<IServiceProvidersFeature>(servicesFeature);
 
         await _next(context);
+
+        var statusCode = context.Response.StatusCode;
+
+        Console.WriteLine("ASP.NET middleware status code " + statusCode);
+
+        if (statusCode != 400)
+        {
+            Console.WriteLine("ASP.NET Middleware status is not 400, it is : " + statusCode);
+        }
     }
 }

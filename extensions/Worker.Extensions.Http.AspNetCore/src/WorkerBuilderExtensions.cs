@@ -27,6 +27,8 @@ namespace Microsoft.Azure.Functions.Worker
                 throw new ArgumentNullException(nameof(builder));
             }
 
+            builder.UseMiddleware<TestMiddleware>();
+
             builder.UseMiddleware<FunctionsHttpProxyingMiddleware>();
 
             builder.Services.AddSingleton<IHttpCoordinator, DefaultHttpCoordinator>();

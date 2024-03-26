@@ -1,6 +1,7 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,6 +53,11 @@ namespace Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore
             if (invocationResult?.Value is IActionResult actionResult)
             {
                 ActionContext actionContext = new ActionContext(httpContext, httpContext.GetRouteData(), new ActionDescriptor());
+
+                if (actionResult is ContentResult contentResult)
+                {
+                    Console.WriteLine(contentResult.StatusCode + " in http proxying middleware.");
+                }
 
                 await actionResult.ExecuteResultAsync(actionContext);
             }
