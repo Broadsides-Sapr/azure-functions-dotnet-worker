@@ -1,0 +1,11 @@
+﻿<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Copy OS specific FunctionsNetHost executable and dependencies to output directory-->
+  <Target Name="CopyFunctionsNetHostFiles" AfterTargets="Build">
+    <Message Text="Hello CopyFunctionsNetHostFiles 1030" Importance="high" />
+    <ItemGroup>
+      <FilesToCopy Include="$(MSBuildThisFileDirectory)../dist/windows/**/*.*" Condition="$([MSBuild]::IsOSPlatform('Windows'))" />
+      <FilesToCopy Include="$(MSBuildThisFileDirectory)../dist/linux/**/*.*" Condition="$([MSBuild]::IsOSPlatform('Linux'))" />
+    </ItemGroup>
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(OutputPath)/workers/dotnet-isolated/bin" />
+  </Target>
+</Project>
