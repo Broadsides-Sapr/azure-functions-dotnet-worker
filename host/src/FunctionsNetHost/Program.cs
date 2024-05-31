@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System.CommandLine;
+using System.Reflection;
 using FunctionsNetHost.Grpc;
 using FunctionsNetHost.Prelaunch;
 
@@ -13,7 +14,7 @@ namespace FunctionsNetHost
         {
             try
             {
-                Logger.Log("Starting FunctionsNetHost");
+                Logger.Log("Starting FunctionsNetHost- Base 20240531");
 
                 PreLauncher.Run();
 
