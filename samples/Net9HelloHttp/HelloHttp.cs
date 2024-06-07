@@ -1,24 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
 namespace Net9HelloHttp
 {
-    public class HelloHttp
+    public sealed class HelloHttp
     {
-        private readonly ILogger<HelloHttp> _logger;
+        private readonly ILogger _logger;
 
-        public HelloHttp(ILogger<HelloHttp> logger)
+        public HelloHttp(ILoggerFactory loggerFactory)
         {
-            _logger = logger;
+            _logger = loggerFactory.CreateLogger<HelloHttp>();
         }
 
-        [Function("hellohttp")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
-        {       
+        [Function("HelloHttp")]
+        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous)] HttpRequestData req)
+        {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Net9 Azure Functions!");
+
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+
+            response.WriteString("Welcome to Azure Functions!");
+
+            return response;
         }
     }
 }
