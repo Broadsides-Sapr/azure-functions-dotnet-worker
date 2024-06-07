@@ -148,6 +148,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetWorker.OpenTelemetry"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetWorker.OpenTelemetry.Tests", "test\DotNetWorker.OpenTelemetry.Tests\DotNetWorker.OpenTelemetry.Tests.csproj", "{9AE6E00C-5E6F-4615-9C69-464E9B208E8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net9HelloHttp", "samples\Net9HelloHttp\Net9HelloHttp.csproj", "{0A9A869B-574C-4717-A099-158079A8E630}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -374,6 +376,10 @@ Global
 		{9AE6E00C-5E6F-4615-9C69-464E9B208E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AE6E00C-5E6F-4615-9C69-464E9B208E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AE6E00C-5E6F-4615-9C69-464E9B208E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9A869B-574C-4717-A099-158079A8E630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9A869B-574C-4717-A099-158079A8E630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9A869B-574C-4717-A099-158079A8E630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9A869B-574C-4717-A099-158079A8E630}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -439,6 +445,7 @@ Global
 		{198DA072-F94F-4585-A744-97B3DAC21686} = {B5821230-6E0A-4535-88A9-ED31B6F07596}
 		{82157559-DF60-496D-817F-84B34CFF76FD} = {083592CA-7DAB-44CE-8979-44FAFA46AEC3}
 		{9AE6E00C-5E6F-4615-9C69-464E9B208E8C} = {FD7243E4-BF18-43F8-8744-BA1D17ACF378}
+		{0A9A869B-574C-4717-A099-158079A8E630} = {9D6603BD-7EA2-4D11-A69C-0D9E01317FD6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {497D2ED4-A13E-4BCA-8D29-F30CA7D0EA4A}
